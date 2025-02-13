@@ -1,72 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Daily Sync Dashboard</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="styles.css">
-        <style>
-            *{
-                margin: 0;
-                padding: 0;
 
-<<<<<<< Updated upstream
-            }
-        </style>
-    </head>
-    <body>
-        
-        
-        <main class="container-fluid ">
-             <nav class="navbar navbar-fixed-top navbar-light bg-light px-3 py-3 mb-2" style="">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">replace with logo image <span class="text-danger">.....</span>
-                    </a>
-                    <form class="d-flex" method="get">
-                        <input class="form-control me-0" type="search" placeholder="Search your task here...">
-                        <button class="btn btn-light btn-outline-danger" type="submit">🔍</button>
-                    </form>
-                    <ul class="navbar-nav list-group-horizontal "> 
-                        <!-- add new buttons with <li> tags inside this tag-->
-                        <li class="nav-item">
-                            <button class="btn btn-outline-danger me-2">
-                                <img src="" alt=""> <img style="height: 13px; border-radius: 50%; object-fit: contain; zoom: 200%;" class="me-1" src="DailyCoin.jpg" alt="">150
-                            </button>
-                        </li>
-                        <li class="nav-item">  
-                                    <button class="btn btn-outline-danger ms-2 me-2">📅</button>
-                        </li>
-    
-                        <li class="nav-item">
-                            <button class="btn btn-outline-danger ms-2">bell</button>
-                        </li>
-    
-                        <li class="nav-item mx-4">
-                            <p class="">Displaying current day date</p>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="sidebar bg-danger text-white p-3" style="width: 20rem; height: 100vh; min-height: 200px; overflow: auto; background: #beddf0; color: #48793c; position: fixed; margin-top: 0px; font-size: 25px;">
-                            <div class="text-center">
-                                <div class="profile-photo" style="width: 80px; height: 80px; background-color: white; border-radius: 50%; margin: auto;"></div>
-                                <h4>UserName</h4>
-                                <p>abc123@gmail.com</p>
-                            </div>
-                            <ul class="nav flex-column">
-                                <li class="nav-item"><a class="nav-link text-white" href="#"> <i class="bi bi-house-fill"></i> Dashboard</a></li>
-                                <li class="nav-item"><a class="nav-link text-white" href="#"> <i class="bi bi-gear"></i> Modes</a></li>
-                                <li class="nav-item"><a class="nav-link text-white" href="#"> <i class="bi bi-list-task"></i> My Task</a></li>
-                                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-tag-fill"></i> Task Categories</a></li>
-                                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-gear"> </i>Settings</a></li>
-                                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-question-circle-fill"></i> Help</a></li>
-                                <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
-                            </ul>
-=======
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -217,6 +151,20 @@
                 max-width: 500px; /* Adjust if needed */
             }
             
+            .task-long-box{
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .task-image {
+            width: 100%;
+            height: 150px;
+            background: #ddd;
+            border-radius: 10px;
+        }
 
 
         .navbar {
@@ -288,27 +236,29 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-light">
-        <div class="logo-space">
-
+    <nav class="navbar navbar-light" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <div class="logo-space" style="display: flex; align-items: center;">
             <span style="font-size: 22px; font-weight: bold; color: #ff5e5e;">Daily</span>
-            <span style="font-size: 22px; font-weight: bold;">Sync</span>
+            <span style="font-size: 22px; font-weight: bold; margin-left: 5px;">Sync</span>
         </div>
-        <div class="search-container">
-            <input class="form-control" type="search" placeholder="Search your task here..." aria-label="Search">
+        
+        <div class="search-container" style="flex-grow: 1; max-width: 400px; margin: 0 20px;">
+            <input class="form-control" type="search" placeholder="Search your task here..." aria-label="Search" style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #ccc;">
         </div>
-        <div class="nav-buttons">
-            <button class="nav-button">🔍</button>
-            <button class="nav-button">📈</button>
-            <button class="nav-button">📅</button>
-            <button class="nav-button">❓</button>
-            <div class="date-info">
+        
+        <div class="nav-buttons" style="display: flex; align-items: center; gap: 10px;">
+            <button class="nav-button" style="background: none; border: none; font-size: 18px; cursor: pointer;">🔍</button>
+            <button class="nav-button" style="background: none; border: none; font-size: 18px; cursor: pointer;">📈</button>
+            <button class="nav-button" style="background: none; border: none; font-size: 18px; cursor: pointer;">📅</button>
+            <button class="nav-button" style="background: none; border: none; font-size: 18px; cursor: pointer;">❓</button>
+            
+            <div class="date-info" style="text-align: center;">
                 <strong id="current-day"></strong><br>
                 <span id="current-date"></span>
             </div>
-
         </div>
     </nav>
+    
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -374,9 +324,39 @@
                 <div class="completed-box" style="height: 80px; border-radius: 12px; background-color: #d4edda; display: flex; align-items: center; justify-content: center;"></div>
             </div>
             
-        
-        
-        
+    
+        <div class="row">
+            <div class="col-md-6">
+                <div class="task-card mb-3">
+                    <h5>To-Do</h5>
+                    <div class="d-flex gap-2 align-items-center">
+                        <button class="btn btn-primary btn-sm" onclick="openAddTask()">Add Task</button>
+                        <button class="btn btn-secondary btn-sm" onclick="openEditTask()">Edit Task</button>
+                    </div>
+
+
+
+                    <div class="task-image mb-2"></div>
+                    <div class="task-image mb-2"></div>
+                    <div class="task-image"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="task-card mb-3" style="height: 100%;">
+                    <h5>Task Status</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="task-card mb-3"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="task-card mb-3"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap Modal for Settings -->
     <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -391,144 +371,95 @@
                             <img src="images.jpg" alt="User Profile" class="profile-img">
                             <h4>Asta</h4>
                             <p>asta12@gmail.com</p>
->>>>>>> Stashed changes
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="container-md-6 mb-4" style="position: absolute;">
-                        <h2>Welcome back, Asta 👋</h2>
-                        <div class="row">
-                            <div class="col-md-8 bg-primar border border-2 border-dark " style="background-color: #f8f9fa; ">
-                                <div class="container p-3" style="position: relative;">
-                                    <nav class="navbar">
-                                    <ul class="navbar-nav container-fluid list-group-horizontal">
-                                        <li class="nav my-4 mx-3"><h5 class="text-light"><i class="bi bi-check2-circle text-dark"></i></i><span class="text-danger"> To-Do</span></h5>
-                                        </li>
-                                        <li class="nav"><button class="btn mx-10 my-3 "><span class="text-danger">+</span> New Task</button></li>
-                                    </ul>
-                                </nav> 
-                                <ul class="navbar-nav list-group-horizontal">
-                                    <li class="nav-item"><p class="ms-3 me-1 "><strong>current Date</strong></p></li><p class="text-secondary"> &#x2022; Today </p>
-                                </ul>
-                                    <div class="container">
-                                        <div class="card custom-card mb-3 p-3">
-                                            <h5 class="card-title">
-                                            <input type="radio" class="me-3">
-                                            Attend Lucifer Birthday Party
-                                            <button class="dropdown btn"><i class="bi bi-three-dots"></i></button></h5>
-                                            <p class="card-text">
-                                                <ul class="navbar-nav list-group-horizontal">
-                                                    dkhfbwkbviysbcusdh vuodsbvibsvbsid gug iugfvi dgvbevdjo euor ghuoer ;ojerhv uer
-                                                    <img src="DailyCoin.jpg" alt=""
-                                                    style="height: 150px; width: 150px;">
-                                                </ul>
-                                            </p>
-                                            <p class="card-footer d-flex">
-                                                <ul class="navbar-nav list-group-horizontal">
-                                                    <li class="nav-item ps-4">Priority: moderate</li>
-                                                    <li class="nav-item ps-5 pe-5">Status: Not Started</li>
-                                                    <li class="nav-item ps-5 text-secondary">Created on: ----</li>
-                                                </ul>
-                                            </p>
-                                            
-                                        </div>
-                                        <div class="card custom-card mb-3 p-3">
-                                            <h5 class="card-title">
-                                            <input type="radio" class="me-3">
-                                            Attend Lucifer Birthday Party
-                                            <button class="dropdown btn"><i class="bi bi-three-dots"></i></button></h5>
-                                            <p class="card-text">
-                                                <ul class="navbar-nav list-group-horizontal">
-                                                    dkhfbwkbviysbcusdh vuodsbvibsvbsid gug iugfvi dgvbevdjo euor ghuoer ;ojerhv uer
-                                                    <img src="DailyCoin.jpg" alt=""
-                                                    style="height: 150px; width: 150px;">
-                                                </ul>
-                                            </p>
-                                            <p class="card-footer d-flex">
-                                                <ul class="navbar-nav list-group-horizontal">
-                                                    <li class="nav-item ps-4">Priority: moderate</li>
-                                                    <li class="nav-item ps-5 pe-5">Status: Not Started</li>
-                                                    <li class="nav-item ps-5 text-secondary">Created on: ----</li>
-                                                </ul>
-                                            </p>
-                                            
-                                        </div>
-                                        <div class="card custom-card mb-3 p-3">
-                                            <h5 class="card-title">
-                                            <input type="radio" class="me-3">
-                                            Attend Lucifer Birthday Party
-                                            <button class="dropdown btn"><i class="bi bi-three-dots"></i></button></h5>
-                                            <p class="card-text">
-                                                <ul class="navbar-nav list-group-horizontal">
-                                                    dkhfbwkbviysbcusdh vuodsbvibsvbsid gug iugfvi dgvbevdjo euor ghuoer ;ojerhv uer
-                                                    <img src="DailyCoin.jpg" alt=""
-                                                    style="height: 150px; width: 150px;">
-                                                </ul>
-                                            </p>
-                                            <p class="card-footer d-flex">
-                                                <ul class="navbar-nav list-group-horizontal">
-                                                    <li class="nav-item ps-4">Priority: moderate</li>
-                                                    <li class="nav-item ps-5 pe-5">Status: Not Started</li>
-                                                    <li class="nav-item ps-5 text-secondary">Created on: ----</li>
-                                                </ul>
-                                            </p>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <ul>
-                                <div class="container border p-3">
-                                    <h5>Task Status</h5>
-                                    <div class="container">
-                                        <p>Completed: 84%</p>
-                                        <p>In Progress: 46%</p>
-                                        <p>Not Started: 13%</p>
-                                    </div>
-                                </div>
-                                <div class="container-md-5">
-                                    <div class="row">
-                                        <div class="col-md-16 mt-5">
-                                            <div class="container border p-3">
-                                                <h5>Completed Tasks</h5>
-                                                <div class="card mb-3 p-3">
-                                                     <h5 class="card-title">
-                                                    <input type="radio" class="me-3">
-                                                    Attend Lucifer Birthday Party
-                                                    <button class="dropdown btn"><i class="bi bi-three-dots"></i></button></h5>
-                                                    <p class="card-text">
-                                                        <ul class="navbar-nav list-group-horizontal">
-                                                            dkhfbwkbviysbcusdh vuodsbvibsvbsid gug iugfvi dgvbevdjo euor ghuoer ;ojerhv uer
-                                                            <img src="DailyCoin.jpg" alt=""
-                                                            style="height: 100px; width: 100px;">
-                                                        </ul>
-                                                    </p></div>
-                                                <div class="card mb-3 p-3">  <h5 class="card-title">
-                                                    <input type="radio" class="me-3">
-                                                    Attend Lucifer Birthday Party
-                                                    <button class="dropdown btn"><i class="bi bi-three-dots"></i></button></h5>
-                                                    <p class="card-text">
-                                                        <ul class="navbar-nav list-group-horizontal">
-                                                            dkhfbwkbviysbcusdh vuodsbvibsvbsid gug iugfvi dgvbevdjo euor ghuoer ;ojerhv uer
-                                                            <img src="DailyCoin.jpg" alt=""
-                                                            style="height: 100px; width: 100px;">
-                                                        </ul>
-                                                    </p></div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div></ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                
-                         </div>
-                         </div>
-                </div>
-        </main>
 
-    </body>
+                        <form>
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact" class="form-label">Contact Number</label>
+                                <input type="text" class="form-control" id="contact">
+                            </div>
+                            <div class="mb-3">
+                                <label for="position" class="form-label">Position</label>
+                                <input type="text" class="form-control" id="position">
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-danger">Update Info</button>
+                                <button type="button" class="btn btn-warning">Change Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Modal for Help -->
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Help & Support</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Frequently Asked Questions</h4>
+                    <p><strong>Q: How do I add a new task?</strong></p>
+                    <p>A: Click on the "Add Task" button on the dashboard.</p>
+
+                    <p><strong>Q: How can I edit my account information?</strong></p>
+                    <p>A: Go to "Settings" in the sidebar and update your details.</p>
+
+                    <p><strong>Q: Who do I contact for support?</strong></p>
+                    <p>A: You can email us at <a href="mailto:support@dailysync.com">support@dailysync.com</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openAddTask() {
+            window.open("add_task.html", "AddTask", "width=600,height=600");
+        }
+    </script>
+
+
+    <script>
+        function openEditTask() {
+            window.open("edit_task.html", "EditTask", "width=600,height=600");
+        }
+    </script>
+    <script>
+        function updateDate() {
+            const dateElement = document.getElementById("current-date");
+            const dayElement = document.getElementById("current-day");
+
+            const now = new Date();
+            const options = { weekday: 'long' }; // Get full day name
+            const formattedDay = new Intl.DateTimeFormat('en-US', options).format(now);
+            const formattedDate = now.toLocaleDateString('en-GB'); // Format as DD/MM/YYYY
+
+            dayElement.innerText = formattedDay;
+            dateElement.innerText = formattedDate;
+        }
+
+        // Run function when page loads
+        window.onload = updateDate;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
 </html>
-<!-- navbar fixed on top, task's 3 dot dropdown menu, task description dividing into small 4 lines, professional footer, graphs, detailing box shadow and buttons etc-->
