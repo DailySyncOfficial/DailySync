@@ -207,22 +207,57 @@
             border: none;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
             border-radius: 15px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
         }
 
         .available-coins {
             font-size: 2rem;
             font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             color: #ff5e5e;
-            text-shadow: 0 0 10px rgba(255, 94, 94, 0.5);
+        }
+
+        .coin-icon {
+            font-size: 2rem;
+            margin-right: 8px;
+        }
+
+        .redeem-btn {
+            background: #ff5e5e;
+            color: white;
+            font-weight: bold;
+        }
+
+        .redeem-btn:hover {
+            background: #ff3b3b;
+        }
+
+        .task-item {
+            background: #fff3f3;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-item button {
+            background: #ff5e5e;
+            border: none;
+            padding: 8px 12px;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .task-item button.completed {
+            background: gray;
+            cursor: not-allowed;
+        }
+
+        .task-item button:hover {
+            background: #ff3b3b;
         }
 
         .coin-icon {
@@ -266,6 +301,14 @@
         .redeem-btn:hover {
             background: #ff3b3b;
         }
+        .row {
+    display: flex;
+    align-items: stretch;
+}
+ .card:hover { transform: scale(1.05); transition: 0.3s ease-in-out; }
+        .redeem-btn:hover { background: #ff3b3b; }
+        .modal-content { border-radius: 15px; }
+
     </style>
 </head>
 
@@ -325,50 +368,134 @@
     </div>
 
     <br><br>
-    <div class="container text-center">
-        <h2 class="mb-4 text-danger fw-bold">Daily Coins</h2>
-        <div class="card mx-auto p-3 mb-4 shadow-sm" style="width: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Available Coins</h5>
-                <p class="available-coins">
-                    <i class="fas fa-coins coin-icon"></i> <span id="coin-count">1000</span>
-                </p>
-            </div>
-        </div>
+    <div class="container text-center mt-5">
         <div class="row">
             <div class="col-md-6">
                 <div class="card p-3 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Transaction History</h5>
-                        <div class="history-item"><i class="fas fa-plus-circle"></i> +500 Earned from Task Completion</div>
-                        <div class="history-item"><i class="fas fa-minus-circle"></i> -200 Redeemed for Coupon</div>
-                    </div>
+                    <h5>Available Coins</h5>
+                    <p class="available-coins"><i class="fas fa-coins"></i> <span id="coin-count">1000</span></p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card p-3 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Redeem Coupons</h5>
-                        <input type="text" id="coupon-code" class="form-control mb-2" placeholder="Enter Coupon Code">
-                        <button class="redeem-btn w-100" onclick="redeemCoupon()">Redeem</button>
-                        <p class="text-danger mt-2" id="invalid-message" style="display: none;">Invalid coupon code!</p>
+                    <h5>Redeem Coupons</h5>
+                    <input type="text" id="coupon-code" class="form-control mb-2" placeholder="Enter Coupon Code">
+                    <button class="redeem-btn w-100" onclick="redeemCoupon()">Redeem</button>
+                    <p class="text-danger mt-2" id="invalid-message" style="display: none;">Invalid or Used Coupon!</p>
+                </div>
+            </div>
+        </div>
+        
+        <h3 class="mt-4 text-danger">Tasks</h3>
+        <div id="tasks-list">
+            <div class="task-item" id="task1">
+                <span>Invite a person to get 100 coins</span>
+                <button onclick="completeTask(100, 'Invited a person', 'task1')">Complete</button>
+            </div>
+            <div class="task-item" id="task2">
+                <span>Complete a task to get 50 coins</span>
+                <button onclick="completeTask(50, 'Completed a task', 'task2')">Complete</button>
+            </div>
+            <div class="task-item" id="task3">
+                <span>Leave a review to get 30 coins</span>
+                <button onclick="completeTask(30, 'Left a review', 'task3')">Complete</button>
+            </div>
+            <div class="task-item" id="task4">
+                <span>Check in daily to get 20 coins</span>
+                <button onclick="completeTask(20, 'Checked in', 'task4')">Complete</button>
+            </div>
+        </div>
+        <div class="modal fade" id="premiumModal" tabindex="-1" aria-labelledby="premiumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-success">🎉 Congratulations!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You have unlocked <b>Premium Features</b>! Enjoy Daily Sync <b>Ad-Free</b>! 🎊</p>
                     </div>
                 </div>
             </div>
         </div>
+    
+        
+        <h3 class="mt-4 text-danger">Transaction History</h3>
+        <table class="table table-bordered mt-3">
+            <thead class="table-danger">
+                <tr>
+                    <th>Description</th>
+                    <th>Coins</th>
+                </tr>
+            </thead>
+            <tbody id="transaction-history">
+                <tr><td>Initial Balance</td><td>+1000</td></tr>
+            </tbody>
+        </table>
     </div>
+
     <script>
-        function redeemCoupon() {
-            let couponCode = document.getElementById("coupon-code").value.trim();
+        function completeTask(amount, description, taskId) {
+            let taskButton = document.querySelector(`#${taskId} button`);
+            if (taskButton.classList.contains("completed")) return;
+            
             let coinCount = document.getElementById("coin-count");
-            let invalidMessage = document.getElementById("invalid-message");
-            if (couponCode === "DISCOUNT100") {
-                let coins = parseInt(coinCount.innerText);
-                coinCount.innerText = coins + 100;
-                invalidMessage.style.display = "none";
-            } else {
-                invalidMessage.style.display = "block";
+            let coins = parseInt(coinCount.innerText);
+            coinCount.innerText = coins + amount;
+            addTransaction(description, "+" + amount);
+            
+            taskButton.innerText = "Completed";
+            taskButton.classList.add("completed");
+            taskButton.disabled = true;
+        }
+        
+        function addTransaction(description, amount) {
+            let table = document.getElementById("transaction-history");
+            let row = table.insertRow(0);
+            let descCell = row.insertCell(0);
+            let amountCell = row.insertCell(1);
+            descCell.innerText = description;
+            amountCell.innerText = amount;
+        }
+    </script>
+    <script>
+        let usedCoupons = {};
+
+        function redeemCoupon() {
+            let couponInput = document.getElementById("coupon-code").value.trim().toUpperCase();
+            let coinCount = document.getElementById("coin-count");
+            let coins = parseInt(coinCount.innerText);
+            let message = document.getElementById("invalid-message");
+            let transactionHistory = document.getElementById("transaction-history");
+
+            if (usedCoupons[couponInput]) {
+                message.style.display = "block";
+                return;
             }
+
+            let coinAmount = 0;
+            let description = "";
+
+            if (couponInput === "ADD50") {
+                coinAmount = 50;
+                description = "Used ADD50 Coupon";
+            } else if (couponInput === "NEW100") {
+                coinAmount = 100;
+                description = "Used NEW100 Coupon";
+            } else if (couponInput === "PREMIUM15") {
+                description = "Unlocked Premium Features";
+                new bootstrap.Modal(document.getElementById("premiumModal")).show();
+            } else {
+                message.style.display = "block";
+                return;
+            }
+
+            coinCount.innerText = coins + coinAmount;
+            let row = transactionHistory.insertRow(0);
+            row.insertCell(0).innerText = description;
+            row.insertCell(1).innerText = "+" + coinAmount;
+            usedCoupons[couponInput] = true;
+            message.style.display = "none";
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -20,25 +20,13 @@
             overflow: hidden;
         }
 
-        .profile-img {
-            width: 100px;
-            /* Adjust size as needed */
-            height: 100px;
-            /* Make width and height equal */
-            border-radius: 50%;
-            /* This makes it a perfect circle */
-            object-fit: cover;
-            /* Ensures the image fills the circle properly */
-            border: 3px solid white;
-            /* Optional: Adds a border around the image */
-        }
-
-
         .sidebar {
             width: 250px;
             background-color: #ff6767;
             height: 100vh;
             position: fixed;
+            left: 0;
+            top: 0;
             padding-top: 20px;
             color: white;
         }
@@ -53,6 +41,21 @@
         .sidebar a:hover {
             background-color: #ff3b3b;
         }
+
+        .profile-img {
+        margin-top: 100px;
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Keep it square */
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Prevent stretching */
+    display: block; /* Ensure it doesn’t overlap */
+    margin: 10px auto; /* Center it properly */
+    margin-top: 45px;
+    border: 3px solid white;
+}
+.logout{
+    margin-bottom: 10px;
+}
 
         .content {
             margin-left: 250px;
