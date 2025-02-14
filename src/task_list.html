@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-  .navbar {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <style>
+        .navbar {
             background-color: #f7f7f7;
             padding: 10px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -65,9 +70,125 @@
         .date-info {
             text-align: right;
             font-size: 14px;
-        }  
-</style>
+        }
+
+        .datepicker-dropdown {
+            position: absolute !important;
+            left: auto !important;
+            right: 0 !important;
+            /* Aligns with the right edge of the button */
+            transform: translateX(-10px) translateY(5px);
+            /* Fine-tune positioning */
+        }
+
+
+        /* Header of the datepicker (Month & Year) */
+        .datepicker th {
+            background: #ff5e5e;
+            color: white;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        /* Days in the calendar */
+        .datepicker td,
+        .datepicker th {
+            text-align: center;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* Highlight today's date */
+        .datepicker .today {
+            background: #ff5e5e !important;
+            color: white !important;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        /* Highlight selected date */
+        .datepicker .active {
+            background: #ff3b3b !important;
+            color: white !important;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        /* Hover effect on calendar dates */
+        .datepicker td:hover {
+            background: rgba(255, 94, 94, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Make navigation arrows look better */
+        .datepicker .prev,
+        .datepicker .next {
+            color: white !important;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Make the weekend dates stand out */
+        .datepicker .dow:nth-child(7),
+        .datepicker .dow:nth-child(1) {
+            color: #ff3b3b;
+            font-weight: bold;
+        }
+
+        .datepicker-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #ff6767;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 20px;
+            color: white;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+
+        .sidebar a:hover {
+            background-color: #ff3b3b;
+        }
+
+        .profile-img {
+            margin-top: 100px;
+            width: 100px;
+            /* Adjust as needed */
+            height: 100px;
+            /* Keep it square */
+            border-radius: 50%;
+            /* Make it circular */
+            object-fit: cover;
+            /* Prevent stretching */
+            display: block;
+            /* Ensure it doesn’t overlap */
+            margin: 10px auto;
+            /* Center it properly */
+            margin-top: 45px;
+            border: 3px solid white;
+        }
+
+        .logout {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body>
     <nav class="navbar navbar-light">
         <div class="logo-space">
@@ -79,9 +200,12 @@
             <input class="form-control" type="search" placeholder="Search your task here..." aria-label="Search">
         </div>
         <div class="nav-buttons">
-            <button class="nav-button">🔍</button>
-            <button class="nav-button">📈</button>
-            <button class="nav-button">📅</button>
+            <button class="nav-button">🪙</button>
+            <button class="nav-button" id="dateIcon">📅</button>
+
+
+            <!-- Hidden Date Input for Datepicker -->
+            <input type="text" id="hiddenDateInput" style="display: none;">
             <button class="nav-button">❓</button>
             <div class="date-info">
                 <strong id="current-day"></strong><br>
@@ -90,6 +214,29 @@
 
         </div>
     </nav>
+    <div class="sidebar">
+        <div class="text-center">
+            <img src="images.jpg" alt="User Profile" class="profile-img">
+
+            <h4>Asta</h4>
+            <p>asta12@gmail.com</p>
+        </div>
+        <a href="Dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="task_list.html"><i class="fas fa-tasks"></i> My Task</a>
+        <a href="#"><i class="fas fa-layer-group"></i> Task Categories</a>
+        <a href="DailyCoins.html"><i class="fas fa-coins"></i> Daily Coins</a>
+        <a href="settings.html">
+            <i class="fas fa-cog"></i> Settings
+        </a>
+
+
+        <a href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+            <i class="fas fa-question-circle"></i> Help
+        </a>
+        <br>
+        <br><br><br><br><br><br>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
     <br>
     <br>
     <div class="container mt-5">
@@ -131,5 +278,30 @@
         // Run function when page loads
         window.onload = updateDate;
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#hiddenDateInput').datepicker({
+                format: "dd-mm-yyyy",
+                autoclose: true,
+                todayHighlight: true
+            }).on('show', function () {
+                $('.datepicker-dropdown').css({
+                    position: 'absolute',
+                    top: $("#dateIcon").offset().top + $("#dateIcon").outerHeight(),
+                    left: $("#dateIcon").offset().left,
+                    zIndex: 9999
+                });
+            });
+
+            $("#dateIcon").click(function () {
+                $('#hiddenDateInput').datepicker("show");
+            });
+        });
+
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
