@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Coins</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+       body {
+            background: linear-gradient(to right, #fef3f3, #ffecec);
+        }
+        .navbar {
+            background-color: #f7f7f7;
+            padding: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            /* Full width */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-space {
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+        }
+
+        .logo-space img {
+            height: 40px;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Ensures vertical alignment */
+            gap: 5px;
+            /* Reduce unnecessary space */
+        }
+
+        .search-container input {
+            width: 50%;
+            max-width: 400px;
+        }
+
+
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-right: 20px;
+        }
+
+        .nav-button {
+            background: #ff5e5e;
+            color: white;
+            border: none;
+            padding: 8px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background: #ff3b3b;
+        }
+
+        .date-info {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .dashboard-container {
+            margin-top: 70px;
+        }
+
+        /* Customize the datepicker popup */
+        .datepicker-dropdown {
+            position: absolute !important;
+            left: auto !important;
+            right: 0 !important;
+            /* Aligns with the right edge of the button */
+            transform: translateX(-10px) translateY(5px);
+            /* Fine-tune positioning */
+        }
+
+
+        /* Header of the datepicker (Month & Year) */
+        .datepicker th {
+            background: #ff5e5e;
+            color: white;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        /* Days in the calendar */
+        .datepicker td,
+        .datepicker th {
+            text-align: center;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* Highlight today's date */
+        .datepicker .today {
+            background: #ff5e5e !important;
+            color: white !important;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        /* Highlight selected date */
+        .datepicker .active {
+            background: #ff3b3b !important;
+            color: white !important;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        /* Hover effect on calendar dates */
+        .datepicker td:hover {
+            background: rgba(255, 94, 94, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Make navigation arrows look better */
+        .datepicker .prev,
+        .datepicker .next {
+            color: white !important;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Make the weekend dates stand out */
+        .datepicker .dow:nth-child(7),
+        .datepicker .dow:nth-child(1) {
+            color: #ff3b3b;
+            font-weight: bold;
+        }
+
+        .datepicker-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #ff6767;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 20px;
+            color: white;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+
+        .sidebar a:hover {
+            background-color: #ff3b3b;
+        }
+
+        .profile-img {
+    width: 80px; /* Adjust as needed */
+    height: 80px; /* Keep it square */
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Prevent stretching */
+    display: block; /* Ensure it doesn’t overlap */
+    margin: 10px auto; /* Center it properly */
+}
+
+
+        /* Adjust content layout */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin-top: 30px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .available-coins {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ff5e5e;
+            text-shadow: 0 0 10px rgba(255, 94, 94, 0.5);
+        }
+
+        .coin-icon {
+            font-size: 2rem;
+            margin-right: 8px;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 94, 94, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 94, 94, 1);
+            }
+        }
+
+        .history-item {
+            background-color: #fff3f3;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .history-item i {
+            color: #ff5e5e;
+            margin-right: 10px;
+        }
+
+        .redeem-btn {
+            background: #ff5e5e;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .redeem-btn:hover {
+            background: #ff3b3b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light">
+        <div class="logo-space">
+
+            <span style="font-size: 22px; font-weight: bold; color: #ff5e5e;">Daily</span>
+            <span style="font-size: 22px; font-weight: bold;">Sync</span>
+        </div>
+        <div class="search-container">
+            <input class="form-control" type="search" placeholder="Search your task here..." aria-label="Search">
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-button">📈</button>
+            <!-- Date Icon Button -->
+            <button class="nav-button" id="dateIcon">📅</button>
+
+
+            <!-- Hidden Date Input for Datepicker -->
+            <input type="text" id="hiddenDateInput" style="display: none;">
+
+
+
+            <button class="nav-button">❓</button>
+            <div class="date-info">
+                <strong id="current-day"></strong><br>
+                <span id="current-date"></span>
+            </div>
+
+        </div>
+        <br>
+    </nav>
+    <div class="sidebar">
+        <div class="text-center">
+            <img src="images.jpg" alt="User Profile" class="profile-img">
+
+            <h4>Asta</h4>
+            <p>asta12@gmail.com</p>
+        </div>
+        <a href="Dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="task_list.html"><i class="fas fa-tasks"></i> My Task</a>
+        <a href="#"><i class="fas fa-layer-group"></i> Task Categories</a>
+        <a href="DailyCoins.html"><i class="fas fa-coins"></i> Daily Coins</a>
+        <a href="settings.html">
+            <i class="fas fa-cog"></i> Settings
+        </a>
+
+
+        <a href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+            <i class="fas fa-question-circle"></i> Help
+        </a>
+        <br>
+        <br><br><br><br><br><br><br><br><br>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <br><br>
+    <div class="container text-center">
+        <h2 class="mb-4 text-danger fw-bold">Daily Coins</h2>
+        <div class="card mx-auto p-3 mb-4 shadow-sm" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Available Coins</h5>
+                <p class="available-coins">
+                    <i class="fas fa-coins coin-icon"></i> <span id="coin-count">1000</span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card p-3 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Transaction History</h5>
+                        <div class="history-item"><i class="fas fa-plus-circle"></i> +500 Earned from Task Completion</div>
+                        <div class="history-item"><i class="fas fa-minus-circle"></i> -200 Redeemed for Coupon</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Redeem Coupons</h5>
+                        <input type="text" id="coupon-code" class="form-control mb-2" placeholder="Enter Coupon Code">
+                        <button class="redeem-btn w-100" onclick="redeemCoupon()">Redeem</button>
+                        <p class="text-danger mt-2" id="invalid-message" style="display: none;">Invalid coupon code!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redeemCoupon() {
+            let couponCode = document.getElementById("coupon-code").value.trim();
+            let coinCount = document.getElementById("coin-count");
+            let invalidMessage = document.getElementById("invalid-message");
+            if (couponCode === "DISCOUNT100") {
+                let coins = parseInt(coinCount.innerText);
+                coinCount.innerText = coins + 100;
+                invalidMessage.style.display = "none";
+            } else {
+                invalidMessage.style.display = "block";
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
