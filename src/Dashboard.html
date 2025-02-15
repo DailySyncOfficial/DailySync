@@ -12,270 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
-
-    <style>
-        body {
-            background-color: #f7f7f7;
-            overflow: hidden;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #ff6767;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding-top: 20px;
-            color: white;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px 20px;
-        }
-
-        .sidebar a:hover {
-            background-color: #ff3b3b;
-        }
-
-        .profile-img {
-        margin-top: 100px;
-    width: 100px; /* Adjust as needed */
-    height: 100px; /* Keep it square */
-    border-radius: 50%; /* Make it circular */
-    object-fit: cover; /* Prevent stretching */
-    display: block; /* Ensure it doesn’t overlap */
-    margin: 10px auto; /* Center it properly */
-    margin-top: 45px;
-    border: 3px solid white;
-}
-.logout{
-    margin-bottom: 10px;
-}
-
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        .task-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-        }
-
-        .task-image {
-            width: 100%;
-            height: 150px;
-            background: #ddd;
-            border-radius: 10px;
-        }
-
-        .navbar {
-            background-color: #f7f7f7;
-            padding: 10px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            /* Full width */
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo-space {
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
-        }
-
-        .logo-space img {
-            height: 40px;
-        }
-
-        .search-container {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Ensures vertical alignment */
-            gap: 5px;
-            /* Reduce unnecessary space */
-        }
-
-        .search-container input {
-            width: 50%;
-            max-width: 400px;
-        }
-
-
-
-        .nav-buttons {
-            display: flex;
-            /* Align icons in a row */
-            gap: 10px;
-            /* Space between icons */
-        }
-
-        .nav-button {
-            background-color: #ff6565;
-            border: none;
-            border-radius: 8px;
-            padding: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-        }
-
-        .nav-button:hover {
-            background: #ff3b3b;
-        }
-
-        .date-info {
-            text-align: right;
-            font-size: 14px;
-        }
-
-        .dashboard-container {
-            margin-top: 70px;
-        }
-
-        /* Customize the datepicker popup */
-        .datepicker-dropdown {
-            position: absolute !important;
-            left: auto !important;
-            right: 0 !important;
-            /* Aligns with the right edge of the button */
-            transform: translateX(-10px) translateY(5px);
-            /* Fine-tune positioning */
-        }
-
-
-        /* Header of the datepicker (Month & Year) */
-        .datepicker th {
-            background: #ff5e5e;
-            color: white;
-            font-weight: bold;
-            padding: 8px;
-            border-radius: 12px 12px 0 0;
-        }
-
-        /* Days in the calendar */
-        .datepicker td,
-        .datepicker th {
-            text-align: center;
-            font-size: 14px;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        /* Highlight today's date */
-        .datepicker .today {
-            background: #ff5e5e !important;
-            color: white !important;
-            font-weight: bold;
-            border-radius: 8px;
-        }
-
-        /* Highlight selected date */
-        .datepicker .active {
-            background: #ff3b3b !important;
-            color: white !important;
-            font-weight: bold;
-            border-radius: 8px;
-        }
-
-        /* Hover effect on calendar dates */
-        .datepicker td:hover {
-            background: rgba(255, 94, 94, 0.3);
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        /* Make navigation arrows look better */
-        .datepicker .prev,
-        .datepicker .next {
-            color: white !important;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /* Make the weekend dates stand out */
-        .datepicker .dow:nth-child(7),
-        .datepicker .dow:nth-child(1) {
-            color: #ff3b3b;
-            font-weight: bold;
-        }
-
-        .datepicker-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
-        #coinPopup {
-    position: absolute;
-    display: none;
-    background: linear-gradient(135deg, #f8b500, #ff8000); /* Soft gradient */
-    padding: 12px 18px;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 14px;
-    text-align: center;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    transform: scale(0.95);
-    transition: all 0.25s ease-in-out;
-}
-
-/* Smooth show effect */
-#coinPopup.show {
-    display: block;
-    transform: scale(1);
-    opacity: 1;
-}
-
-/* Popup arrow */
-#coinPopup::before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #ff8000; /* Same as gradient end */
-    filter: drop-shadow(0px -2px 3px rgba(0, 0, 0, 0.1));
-}
-
-/* Coin Icon */
-.coin-popup i {
-    font-size: 30px;
-    margin-bottom: 8px;
-    color: #fff;
-    animation: shine 1.5s infinite alternate;
-}
-
-/* Coin Shine Effect */
-@keyframes shine {
-    0% { text-shadow: 0 0 5px rgba(255, 223, 0, 0.5); }
-    100% { text-shadow: 0 0 12px rgba(255, 223, 0, 1); }
-}
-
-
-    </style>
+    <link rel="stylesheet" href="Dashboard.css">
 </head>
 
 <body>
@@ -292,9 +29,10 @@
         <div class="nav-buttons">
             <!-- Coin Icon Button -->
             <!-- Coin Button -->
-<button type="button" class="btn btn-danger coin-btn" data-bs-toggle="popover" data-bs-html="true" data-bs-content="<strong>Available Coins:</strong> 100">
-    🪙
-</button>
+            <button type="button" class="btn btn-danger coin-btn" data-bs-toggle="popover" data-bs-html="true"
+                data-bs-content="<strong>Available Coins:</strong> 100">
+                🪙
+            </button>
 
             <!-- Coin Popup -->
             <div id="coinPopup" class="coin-popup">
@@ -313,7 +51,6 @@
 
         </div>
     </nav>
-
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="text-center">
@@ -324,7 +61,7 @@
         </div>
         <a href="#"><i class="fas fa-home"></i> Dashboard</a>
         <a href="task_list.html"><i class="fas fa-tasks"></i> My Task</a>
-        <a href="#"><i class="fas fa-layer-group"></i> Task Categories</a>
+        <a href="task-cat.html"><i class="fas fa-layer-group"></i> Task Categories</a>
         <a href="DailyCoins.html"><i class="fas fa-coins"></i> Daily Coins</a>
         <a href="settings.html">
             <i class="fas fa-cog"></i> Settings
@@ -350,183 +87,211 @@
                         <button class="btn btn-primary btn-sm" onclick="openAddTask()">Add Task</button>
 
                     </div>
-
-
-
                     <div class="task-image mb-2"></div>
                     <div class="task-image mb-2"></div>
                     <div class="task-image"></div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="task-card mb-3" style="height: 100%;">
+            <div class="right-sidebar">
+                <div class="task-status">
                     <h5>Task Status</h5>
+                    <div class="status-box">
+                        <p>Status Overview</p>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="task-card mb-3"></div>
-            </div>
-            <div class="col-md-6">
-                <div class="task-card mb-3"></div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap Modal for Settings -->
-    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="settingsModalLabel">Account Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="tasks-completed"
+                    style="background: #fff; border-radius: 17px; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 15px;">
+                    <h5>Tasks Completed</h5>
+                    <div class="completed-box"
+                        style="height: 80px; border-radius: 12px; background-color: #d4edda; display: flex; align-items: center; justify-content: center;">
+                    </div>
+                    <div class="completed-box"
+                        style="height: 80px; border-radius: 12px; background-color: #d4edda; display: flex; align-items: center; justify-content: center;">
+                    </div>
+                    <div class="completed-box"
+                        style="height: 80px; border-radius: 12px; background-color: #d4edda; display: flex; align-items: center; justify-content: center;">
+                    </div>
+                    <div class="completed-box"
+                        style="height: 80px; border-radius: 12px; background-color: #d4edda; display: flex; align-items: center; justify-content: center;">
+                    </div>
+                    <div class="completed-box"
+                        style="height: 80px; border-radius: 12px; background-color: #d4edda; display: flex; align-items: center; justify-content: center;">
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="text-center mb-3">
-                            <img src="images.jpg" alt="User Profile" class="profile-img">
-                            <h4>Asta</h4>
-                            <p>asta12@gmail.com</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="task-card mb-3">
+                            <div class="task-image mb-2"></div>
+                            <div class="task-image mb-2"></div>
+                            <div class="task-image"></div>
                         </div>
-
-                        <form>
-                            <div class="mb-3">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName">
-                            </div>
-                            <div class="mb-3">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="contact" class="form-label">Contact Number</label>
-                                <input type="text" class="form-control" id="contact">
-                            </div>
-                            <div class="mb-3">
-                                <label for="position" class="form-label">Position</label>
-                                <input type="text" class="form-control" id="position">
-                            </div>
-                            <div class="d-flex gap-2">
-                                <button type="submit" class="btn btn-danger">Update Info</button>
-                                <button type="button" class="btn btn-warning">Change Password</button>
-                            </div>
-                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="task-card mb-3" style="height: 100%;">
+                            <h5>Task Status</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="task-card mb-3"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="task-card mb-3"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Bootstrap Modal for Help -->
-    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="helpModalLabel">Help & Support</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h4>Frequently Asked Questions</h4>
-                    <p><strong>Q: How do I add a new task?</strong></p>
-                    <p>A: Click on the "Add Task" button on the dashboard.</p>
 
-                    <p><strong>Q: How can I edit my account information?</strong></p>
-                    <p>A: Go to "Settings" in the sidebar and update your details.</p>
+            <!-- Bootstrap Modal for Settings -->
+            <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="settingsModalLabel">Account Information</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="text-center mb-3">
+                                    <img src="images.jpg" alt="User Profile" class="profile-img">
+                                    <h4>Asta</h4>
+                                    <p>asta12@gmail.com</p>
+                                </div>
 
-                    <p><strong>Q: Who do I contact for support?</strong></p>
-                    <p>A: You can email us at <a href="mailto:support@dailysync.com">support@dailysync.com</a>.</p>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contact" class="form-label">Contact Number</label>
+                                        <input type="text" class="form-control" id="contact">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="position" class="form-label">Position</label>
+                                        <input type="text" class="form-control" id="position">
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button type="submit" class="btn btn-danger">Update Info</button>
+                                        <button type="button" class="btn btn-warning">Change Password</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- Bootstrap Modal for Help -->
+            <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="helpModalLabel">Help & Support</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Frequently Asked Questions</h4>
+                            <p><strong>Q: How do I add a new task?</strong></p>
+                            <p>A: Click on the "Add Task" button on the dashboard.</p>
 
-    <script>
-        function openAddTask() {
-            window.open("add_task.html", "AddTask", "width=600,height=600");
-        }
-    </script>
+                            <p><strong>Q: How can I edit my account information?</strong></p>
+                            <p>A: Go to "Settings" in the sidebar and update your details.</p>
+
+                            <p><strong>Q: Who do I contact for support?</strong></p>
+                            <p>A: You can email us at <a href="mailto:support@dailysync.com">support@dailysync.com</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openAddTask() {
+                    window.open("add_task.html", "AddTask", "width=600,height=600");
+                }
+            </script>
 
 
-    <script>
-        function openEditTask() {
-            window.open("edit_task.html", "EditTask", "width=600,height=600");
-        }
-    </script>
-    <script>
-        function updateDate() {
-            const dateElement = document.getElementById("current-date");
-            const dayElement = document.getElementById("current-day");
+            <script>
+                function openEditTask() {
+                    window.open("edit_task.html", "EditTask", "width=600,height=600");
+                }
+            </script>
+            <script>
+                function updateDate() {
+                    const dateElement = document.getElementById("current-date");
+                    const dayElement = document.getElementById("current-day");
 
-            const now = new Date();
-            const options = { weekday: 'long' }; // Get full day name
-            const formattedDay = new Intl.DateTimeFormat('en-US', options).format(now);
-            const formattedDate = now.toLocaleDateString('en-GB'); // Format as DD/MM/YYYY
+                    const now = new Date();
+                    const options = { weekday: 'long' }; // Get full day name
+                    const formattedDay = new Intl.DateTimeFormat('en-US', options).format(now);
+                    const formattedDate = now.toLocaleDateString('en-GB'); // Format as DD/MM/YYYY
 
-            dayElement.innerText = formattedDay;
-            dateElement.innerText = formattedDate;
-        }
+                    dayElement.innerText = formattedDay;
+                    dateElement.innerText = formattedDate;
+                }
 
-        // Run function when page loads
-        window.onload = updateDate;
-    </script>
+                // Run function when page loads
+                window.onload = updateDate;
+            </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#hiddenDateInput').datepicker({
-                format: "dd-mm-yyyy",
-                autoclose: true,
-                todayHighlight: true
-            }).on('show', function () {
-                $('.datepicker-dropdown').css({
-                    position: 'absolute',
-                    top: $("#dateIcon").offset().top + $("#dateIcon").outerHeight(),
-                    left: $("#dateIcon").offset().left,
-                    zIndex: 9999
+
+            <script>
+                $(document).ready(function () {
+                    $('#hiddenDateInput').datepicker({
+                        format: "dd-mm-yyyy",
+                        autoclose: true,
+                        todayHighlight: true
+                    }).on('show', function () {
+                        $('.datepicker-dropdown').css({
+                            position: 'absolute',
+                            top: $("#dateIcon").offset().top + $("#dateIcon").outerHeight(),
+                            left: $("#dateIcon").offset().left,
+                            zIndex: 9999
+                        });
+                    });
+
+                    $("#dateIcon").click(function () {
+                        $('#hiddenDateInput').datepicker("show");
+                    });
                 });
-            });
+            </script>
+            <script>
+                $(document).ready(function () {
+                    $(".coin-btn").click(function (event) {
+                        event.stopPropagation();
+                        var popup = $("#coinPopup");
 
-            $("#dateIcon").click(function () {
-                $('#hiddenDateInput').datepicker("show");
-            });
-        });
+                        if (popup.hasClass("show")) {
+                            popup.removeClass("show").fadeOut(200);
+                        } else {
+                            var buttonOffset = $(this).offset();
+                            popup.css({
+                                top: buttonOffset.top + $(this).outerHeight() + 10,
+                                left: buttonOffset.left - popup.outerWidth() / 2 + $(this).outerWidth() / 2,
+                            }).fadeIn(200).addClass("show");
+                        }
+                    });
 
+                    $(document).click(function (event) {
+                        if (!$(event.target).closest(".coin-btn, #coinPopup").length) {
+                            $("#coinPopup").removeClass("show").fadeOut(200);
+                        }
+                    });
+                });
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-
-    </script>
-    <script>
-   $(document).ready(function () {
-    $(".coin-btn").click(function (event) {
-        event.stopPropagation();
-        var popup = $("#coinPopup");
-
-        if (popup.hasClass("show")) {
-            popup.removeClass("show").fadeOut(200);
-        } else {
-            var buttonOffset = $(this).offset();
-            popup.css({
-                top: buttonOffset.top + $(this).outerHeight() + 10,
-                left: buttonOffset.left - popup.outerWidth() / 2 + $(this).outerWidth() / 2,
-            }).fadeIn(200).addClass("show");
-        }
-    });
-
-    $(document).click(function (event) {
-        if (!$(event.target).closest(".coin-btn, #coinPopup").length) {
-            $("#coinPopup").removeClass("show").fadeOut(200);
-        }
-    });
-});
-
-
-
-    
-</script>
 </body>
-
 </html>

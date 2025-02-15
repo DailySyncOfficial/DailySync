@@ -1,0 +1,325 @@
+body {
+    background-color: #f7f7f7;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #ff6767;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+    color: white;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+}
+
+.sidebar a:hover {
+    background-color: #ff3b3b;
+}
+
+.profile-img {
+margin-top: 100px;
+width: 100px; /* Adjust as needed */
+height: 100px; /* Keep it square */
+border-radius: 50%; /* Make it circular */
+object-fit: cover; /* Prevent stretching */
+display: block; /* Ensure it doesn’t overlap */
+margin: 10px auto; /* Center it properly */
+margin-top: 45px;
+border: 3px solid white;
+}
+.logout{
+margin-bottom: 10px;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.task-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.task-image {
+    width: 100%;
+    height: 150px;
+    background: #ddd;
+    border-radius: 10px;
+}
+
+.navbar {
+    background-color: #f7f7f7;
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    /* Full width */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-space {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.logo-space img {
+    height: 40px;
+}
+
+.search-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Ensures vertical alignment */
+    gap: 5px;
+    /* Reduce unnecessary space */
+}
+
+.search-container input {
+    width: 50%;
+    max-width: 400px;
+}
+.task-status-container {
+    display: flex;
+    gap: 30px;
+}
+
+.status-card,
+.completed-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.status-box,
+.completed-box {
+    height: 200px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.status-box {
+    background-color: #f0f0f0;
+}
+
+.completed-box {
+    background-color: #d4edda;}
+    
+    .right-sidebar {
+        position: absolute;
+        right: 20px; /* Push to the right */
+        top: 120px; /* Adjusted position */
+        width: 100%; /* Make it same as To-Do container */
+        max-width: 500px; /* Adjust to fit the layout */
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* Space between boxes */
+    }
+    
+    .task-status,
+    .tasks-completed {
+        background: #fff;
+        border-radius: 17px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%; /* Same width as To-Do */
+        max-width: 500px; /* Adjust if needed */
+    }
+    
+    .task-long-box{
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.task-image {
+    width: 100%;
+    height: 150px;
+    background: #ddd;
+    border-radius: 10px;
+}
+
+
+
+.nav-buttons {
+    display: flex;
+    /* Align icons in a row */
+    gap: 10px;
+    /* Space between icons */
+}
+
+.nav-button {
+    background-color: #ff6565;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background: #ff3b3b;
+}
+
+.date-info {
+    text-align: right;
+    font-size: 14px;
+}
+
+.dashboard-container {
+    margin-top: 70px;
+}
+
+/* Customize the datepicker popup */
+.datepicker-dropdown {
+    position: absolute !important;
+    left: auto !important;
+    right: 0 !important;
+    /* Aligns with the right edge of the button */
+    transform: translateX(-10px) translateY(5px);
+    /* Fine-tune positioning */
+}
+
+
+/* Header of the datepicker (Month & Year) */
+.datepicker th {
+    background: #ff5e5e;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Days in the calendar */
+.datepicker td,
+.datepicker th {
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Highlight today's date */
+.datepicker .today {
+    background: #ff5e5e !important;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* Highlight selected date */
+.datepicker .active {
+    background: #ff3b3b !important;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* Hover effect on calendar dates */
+.datepicker td:hover {
+    background: rgba(255, 94, 94, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Make navigation arrows look better */
+.datepicker .prev,
+.datepicker .next {
+    color: white !important;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Make the weekend dates stand out */
+.datepicker .dow:nth-child(7),
+.datepicker .dow:nth-child(1) {
+    color: #ff3b3b;
+    font-weight: bold;
+}
+
+.datepicker-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#coinPopup {
+position: absolute;
+display: none;
+background: linear-gradient(135deg, #f8b500, #ff8000); /* Soft gradient */
+padding: 12px 18px;
+border-radius: 8px;
+color: #fff;
+font-weight: 600;
+font-size: 14px;
+text-align: center;
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+transform: scale(0.95);
+transition: all 0.25s ease-in-out;
+}
+
+/* Smooth show effect */
+#coinPopup.show {
+display: block;
+transform: scale(1);
+opacity: 1;
+}
+
+/* Popup arrow */
+#coinPopup::before {
+content: "";
+position: absolute;
+top: -8px;
+left: 50%;
+transform: translateX(-50%);
+border-left: 8px solid transparent;
+border-right: 8px solid transparent;
+border-bottom: 8px solid #ff8000; /* Same as gradient end */
+filter: drop-shadow(0px -2px 3px rgba(0, 0, 0, 0.1));
+}
+
+/* Coin Icon */
+.coin-popup i {
+font-size: 30px;
+margin-bottom: 8px;
+color: #fff;
+animation: shine 1.5s infinite alternate;
+}
+
+/* Coin Shine Effect */
+@keyframes shine {
+0% { text-shadow: 0 0 5px rgba(255, 223, 0, 0.5); }
+100% { text-shadow: 0 0 12px rgba(255, 223, 0, 1); }
+}
